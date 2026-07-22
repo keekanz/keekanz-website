@@ -108,11 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Determine whether to show the peeking mask & Load More button
     if (matchingCards.length > 8 && !isExpanded) {
+      portfolioWrapper.style.maxHeight = '';
       portfolioWrapper.classList.add('collapsed');
       portfolioWrapper.classList.remove('expanded');
       loadMoreBox.style.display = 'flex';
+      loadMoreBox.style.opacity = '1';
       loadMoreBtn.innerText = `MORE PROJECTS (${matchingCards.length - 8} MORE) +`;
     } else {
+      portfolioWrapper.style.maxHeight = '';
       portfolioWrapper.classList.remove('collapsed');
       portfolioWrapper.classList.add('expanded');
       loadMoreBox.style.display = 'none';
@@ -132,13 +135,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Load More Button Click Handler (Expands container smoothly to show full grid)
+  // Load More Button Click Handler (Expands container smoothly to exact scrollHeight)
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
       isExpanded = true;
+      const targetHeight = portfolioWrapper.scrollHeight;
+      portfolioWrapper.style.maxHeight = targetHeight + 'px';
       portfolioWrapper.classList.remove('collapsed');
       portfolioWrapper.classList.add('expanded');
-      loadMoreBox.style.display = 'none';
+
+      setTimeout(() => {
+        if (isExpanded) {
+          portfolioWrapper.style.maxHeight = 'none';
+        }
+      }, 850);
+
+      loadMoreBox.style.transition = 'opacity 0.4s ease';
+      loadMoreBox.style.opacity = '0';
+      setTimeout(() => {
+        loadMoreBox.style.display = 'none';
+      }, 400);
     });
   }
 
