@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -274,6 +275,7 @@ body {
 .section {
   padding: 100px 0;
   position: relative;
+  scroll-margin-top: 85px;
 }
 
 /* Page 2: About Section (Strict Profile & Layout) */
@@ -838,7 +840,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .section { padding: 45px 0; }
+  .section { padding: 45px 0; scroll-margin-top: 80px; }
   .section-title { font-size: 1.35rem; margin-bottom: 0.65rem; }
   .section-subtitle { font-size: 0.7rem; letter-spacing: 1.5px; }
   
