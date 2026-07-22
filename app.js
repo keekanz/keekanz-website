@@ -202,17 +202,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================================================
-     4. Contact Form Handler
+     4. Instant Direct Email Inquiry Form Submission (Web3Forms)
      ========================================================================== */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert('감사합니다! 프로젝트 문의 메시지가 감독님께 전달되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-      contactForm.reset();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerText : 'Send Project Inquiry';
+      
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'SENDING INQUIRY...';
+      }
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          alert('감사합니다! 프로젝트 문의 메시지가 감독님 메일함(kkhtpm06@naver.com)으로 성공적으로 즉시 전달되었습니다.');
+          contactForm.reset();
+        } else {
+          alert('문의 메일 전송 중 오류가 발생했습니다. 직접 메일(kkhtpm06@naver.com)로 문의주시면 감사하겠습니다.');
+        }
+      } catch (err) {
+        alert('문의 메일 전송 중 오류가 발생했습니다. 직접 메일(kkhtpm06@naver.com)로 문의주시면 감사하겠습니다.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalText;
+        }
+      }
     });
   }
 
 });
-
-// Auto-deploy verified at 2026-07-22 16:34:22
