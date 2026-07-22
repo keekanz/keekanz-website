@@ -142,16 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set initial translucent & micro-translated state without forced reflow
       visibleCards.forEach(card => {
         card.style.transition = 'none';
-        card.style.opacity = '0.2';
-        card.style.transform = 'translateY(14px)';
+        card.style.opacity = '0.15';
+        card.style.transform = 'translateY(24px)';
       });
 
       // Organic randomized float-up via GPU requestAnimationFrame
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           visibleCards.forEach(card => {
-            const randomDelay = (Math.random() * 0.15).toFixed(3);
-            card.style.transition = `opacity 0.38s ease ${randomDelay}s, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) ${randomDelay}s`;
+            const randomDelay = (Math.random() * 0.25).toFixed(3);
+            card.style.transition = `opacity 0.65s ease ${randomDelay}s, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${randomDelay}s`;
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
           });
@@ -173,13 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isExpanded) {
           portfolioWrapper.style.maxHeight = 'none';
         }
-      }, 850);
+      }, 1250);
 
-      loadMoreBox.style.transition = 'opacity 0.4s ease';
+      loadMoreBox.style.transition = 'opacity 0.5s ease';
       loadMoreBox.style.opacity = '0';
       setTimeout(() => {
         loadMoreBox.style.display = 'none';
-      }, 400);
+      }, 500);
     });
   }
 
