@@ -443,7 +443,8 @@ body {
 }
 
 .portfolio-grid-wrapper.expanded {
-  max-height: 3500px;
+  max-height: none !important;
+  overflow: visible;
 }
 
 /* Gradient Fade Mask Overlay */
