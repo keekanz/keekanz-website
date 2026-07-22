@@ -634,7 +634,7 @@ body {
 
 /* Contact & Quick Buttons Combined Layout */
 .contact-quick-buttons {
-  max-width: 680px;
+  max-width: 380px;
   margin: 0 auto 2.5rem auto;
   display: flex;
   flex-direction: column;
@@ -644,8 +644,9 @@ body {
 .link-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem 1.8rem;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.9rem 1.6rem;
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-card);
