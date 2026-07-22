@@ -91,10 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Shuffle matching cards
     const shuffledCards = shuffleArray(matchingCards);
 
-    // Append and display matching cards
+    // Append and display matching cards with staggered ripple entrance animation
     shuffledCards.forEach((card, idx) => {
       portfolioGrid.appendChild(card);
       card.style.display = 'block';
+      card.style.animation = 'none';
+      void card.offsetHeight; // Force reflow to restart animation
+      card.style.animation = 'cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      card.style.animationDelay = (Math.min(idx, 8) * 0.035) + 's';
 
       // Apply featured layout variations for individual category views
       if (activeFilter !== 'all') {
