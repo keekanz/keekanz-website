@@ -852,8 +852,8 @@ body {
 
 /* Distinct, Sleek Mobile & Tablet Typography Optimization */
 @media (max-width: 992px) {
-  .grid-2col.page2-layout { grid-template-columns: 1fr; gap: 2.2rem; }
-  .circle-profile-wrapper { width: 180px; height: 180px; }
+  .grid-2col.page2-layout { grid-template-columns: 1fr; gap: 0.8rem; }
+  .circle-profile-wrapper { width: 180px; height: 180px; margin: 0 0 0.3rem 0; }
   .slide1-tagline { white-space: normal; text-align: center; text-align-last: center; font-size: 0.72rem; letter-spacing: 0.03em; }
   .portfolio-grid-wrapper.collapsed { max-height: 750px; }
 }
@@ -903,8 +903,9 @@ body {
   }
   
 /* About Section Mobile Ultra Compact Scaling */
+  .grid-2col.page2-layout { gap: 0.6rem; }
   .about-visual { justify-content: flex-start; }
-  .circle-profile-wrapper { width: 150px; height: 150px; margin: 0 0 0.8rem 0; }
+  .circle-profile-wrapper { width: 150px; height: 150px; margin: 0 0 0.2rem 0; }
   .director-header-box { padding: 0.7rem 1rem; margin-bottom: 1.2rem; }
   .director-name { font-size: 1.1rem; }
   .director-title { font-size: 0.72rem; margin-left: 0; display: block; margin-top: 2px; }
@@ -932,7 +933,7 @@ body {
 
 @media (max-width: 480px) {
   .section-title { font-size: 1.25rem; }
-  .circle-profile-wrapper { width: 135px; height: 135px; margin: 0 0 0.8rem 0; }
+  .circle-profile-wrapper { width: 135px; height: 135px; margin: 0 0 0.15rem 0; }
   .slide1-psd-logo { margin-bottom: 0.8rem; }
   .slide1-tagline { font-size: 0.62rem; letter-spacing: 0.02em; line-height: 1.35; }
   .director-name { font-size: 1.05rem; }
