@@ -387,8 +387,8 @@ body {
 
 .contact-inline-grid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.4rem;
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-top: 0.3rem;
