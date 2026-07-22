@@ -139,25 +139,24 @@ document.addEventListener('DOMContentLoaded', () => {
       // Get all visible cards for the active filter
       const visibleCards = Array.from(portfolioGrid.children).filter(c => c.style.display !== 'none');
 
-      // Set initial 35% translucent & 55px translated state (Never 0% blackness)
+      // Set initial 35% translucent & 75px deep translated state
       visibleCards.forEach(card => {
         card.style.transition = 'none';
         card.style.opacity = '0.35';
-        card.style.transform = 'translateY(55px)';
+        card.style.transform = 'translateY(75px)';
       });
 
-      // Dual-Timeline Asynchronous Transition:
-      // - Position (transform): 0.7s fast punch Graph 2 curve (55px -> 0px)
-      // - Opacity (opacity): 1.2s long slow ease (35% -> 100%, blooms after position stops)
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          visibleCards.forEach(card => {
-            const randomDelay = (Math.random() * 0.22).toFixed(3);
-            card.style.transition = `transform 0.7s cubic-bezier(0, 0.95, 0.1, 1) ${randomDelay}s, opacity 1.2s cubic-bezier(0.1, 0.8, 0.2, 1) ${randomDelay}s`;
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          });
-        });
+      // Synchronous reflow forces instant start at 0ms without 2-frame static freeze
+      void portfolioGrid.offsetWidth;
+
+      // Instant 0ms response + Long-breath deep movement:
+      // - Position (transform): 75px -> 0px across 1.35s (AE Graph 2 Curve, 0ms instant start)
+      // - Opacity (opacity): 35% -> 100% across 1.8s (Long slow ease bloom)
+      visibleCards.forEach((card, idx) => {
+        const microRipple = (Math.min(idx, 8) * 0.018).toFixed(3);
+        card.style.transition = `transform 1.35s cubic-bezier(0.05, 0.95, 0.05, 1) ${microRipple}s, opacity 1.8s cubic-bezier(0.1, 0.8, 0.2, 1) ${microRipple}s`;
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
       });
     });
   });
