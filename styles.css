@@ -388,7 +388,8 @@ body {
 .contact-inline-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.15rem;
+  line-height: 1.35;
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-top: 0.3rem;
@@ -911,7 +912,7 @@ body {
   .block-item { border-left-width: 2px; padding-left: 0.9rem; }
   .block-label { font-size: 0.72rem; letter-spacing: 1px; margin-bottom: 0.2rem; }
   .block-text { font-size: 0.8rem; line-height: 1.45; color: #b0b7c6; word-break: keep-all; }
-  .contact-inline-grid { font-size: 0.78rem; gap: 0.6rem; }
+  .contact-inline-grid { font-size: 0.78rem; gap: 0.15rem; line-height: 1.35; }
   
   /* Portfolio Works Section Mobile Ultra Compact Scaling */
   .filter-controls { gap: 0.4rem; margin-bottom: 1.8rem; }
