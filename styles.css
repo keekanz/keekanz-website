@@ -429,22 +429,22 @@ body {
   width: 100%;
 }
 
-/* Portfolio Grid Wrapper with Peeking Cutoff */
+/* Portfolio Grid Wrapper with Peeking Cutoff & Smooth Slide-Down Expansion */
 .portfolio-grid-wrapper {
   position: relative;
   width: 100%;
-  transition: max-height 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+  transition: max-height 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: max-height;
 }
 
 /* Collapsed state shows ~2.4 rows so the 3rd row peeks through under the gradient */
 .portfolio-grid-wrapper.collapsed {
   max-height: 730px;
-  overflow: hidden;
 }
 
 .portfolio-grid-wrapper.expanded {
-  max-height: none !important;
-  overflow: visible;
+  max-height: 9000px;
 }
 
 /* Gradient Fade Mask Overlay */
