@@ -583,7 +583,7 @@
           <span class="arrow">→</span>
         </a>
 
-        <a href="C:\Users\kkhtp\OneDrive\Desktop\260722 KEEKANZ 2.0\260722 KEEKANZ 회사소개서.pdf" download class="link-btn pdf-btn">
+        <a href="KEEKANZ_Company_Deck.pdf" target="_blank" download="KEEKANZ_Company_Deck.pdf" class="link-btn pdf-btn">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -594,14 +594,15 @@
         </a>
       </div>
 
-      <!-- Contact Inquiry Form -->
-      <form class="contact-form" id="contactForm">
+      <!-- Contact Inquiry Form (Connected to Direct Email Action) -->
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xayzyoqe" method="POST">
         <div class="form-row">
-          <input type="text" placeholder="Name / Company" required />
-          <input type="email" placeholder="Email Address" required />
+          <input type="text" name="name" placeholder="Name / Company" required />
+          <input type="email" name="email" placeholder="Email Address" required />
         </div>
-        <input type="text" placeholder="Project Subject (Commercial, MV, Motion, 3D, AI)" required />
-        <textarea rows="5" placeholder="Tell us about your project vision, timeline, and budget..." required></textarea>
+        <input type="text" name="subject" placeholder="Project Subject (Commercial, MV, Motion, 3D, AI)" required />
+        <textarea name="message" rows="5" placeholder="Tell us about your project vision, timeline, and budget..." required></textarea>
+        <input type="hidden" name="_to" value="kkhtpm06@naver.com" />
         
         <button type="submit" class="btn btn-primary lg-btn">Send Project Inquiry</button>
       </form>
