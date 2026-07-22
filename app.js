@@ -271,8 +271,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await response.json();
         if (response.ok || data.success === "true") {
-          alert('감사합니다! 프로젝트 문의 메시지가 감독님 메일함(kkhtpm06@naver.com)으로 성공적으로 전달되었습니다.');
           contactForm.reset();
+          const toast = document.getElementById('toastNotification');
+          if (toast) {
+            toast.classList.add('active');
+            setTimeout(() => {
+              toast.classList.remove('active');
+            }, 4500);
+          }
         } else {
           // Fallback to native form submission
           contactForm.submit();
@@ -286,6 +292,31 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.innerText = originalText;
         }
       }
+    });
+  }
+
+
+  /* ==========================================================================
+     5. Feature 2: 3D Interactive Card Tilt Effect (Desktop Only, Modular)
+     ========================================================================== */
+  if (window.innerWidth > 992) {
+    workCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -5; // max 5 deg
+        const rotateY = ((x - centerX) / centerX) * 5;  // max 5 deg
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px) scale(1.015)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+      });
     });
   }
 
