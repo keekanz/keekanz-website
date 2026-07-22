@@ -91,14 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Shuffle matching cards
     const shuffledCards = shuffleArray(matchingCards);
 
-    // Append and display matching cards with staggered ripple entrance animation
+    // Append and display matching cards
     shuffledCards.forEach((card, idx) => {
       portfolioGrid.appendChild(card);
       card.style.display = 'block';
-      card.style.animation = 'none';
-      void card.offsetHeight; // Force reflow to restart animation
-      card.style.animation = 'cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards';
-      card.style.animationDelay = (Math.min(idx, 8) * 0.035) + 's';
 
       // Apply featured layout variations for individual category views
       if (activeFilter !== 'all') {
@@ -126,16 +122,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Filter Button Click Handler (Instant In-Place Switching)
+  // Filter Button Click Handler (Smooth Apple-Style Grid Cross-Fade)
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      const newFilter = btn.getAttribute('data-filter');
+      if (activeFilter === newFilter) return;
+
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      activeFilter = btn.getAttribute('data-filter');
-      isExpanded = false; // Reset expand state when filter changes
-      
-      updatePortfolioDisplay();
+      activeFilter = newFilter;
+      isExpanded = false;
+
+      // Soft, subtle grid cross-fade (Zero blinking)
+      portfolioGrid.style.transition = 'opacity 0.14s ease, transform 0.14s ease';
+      portfolioGrid.style.opacity = '0.35';
+      portfolioGrid.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        updatePortfolioDisplay();
+        portfolioGrid.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+        portfolioGrid.style.opacity = '1';
+        portfolioGrid.style.transform = 'translateY(0)';
+      }, 130);
     });
   });
 
