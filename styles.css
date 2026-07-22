@@ -48,28 +48,9 @@ body {
   display: inline-block;
 }
 
-/* Ambient Glow Effects */
+/* Ambient Glow Effects (Disabled as requested) */
 .ambient-glow {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(140px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.15;
-}
-
-.bg-glow-1 {
-  top: -100px;
-  left: -100px;
-  background: radial-gradient(circle, #00f2fe 0%, transparent 70%);
-}
-
-.bg-glow-2 {
-  bottom: 10%;
-  right: -100px;
-  background: radial-gradient(circle, #7f53ac 0%, transparent 70%);
+  display: none;
 }
 
 .noise-overlay {
@@ -317,7 +298,6 @@ body {
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid rgba(0, 242, 254, 0.4);
-  box-shadow: 0 0 40px rgba(0, 242, 254, 0.25);
   transition: transform 0.5s ease, border-color 0.5s ease;
 }
 
