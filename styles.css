@@ -242,22 +242,34 @@ body {
   padding: 0 1rem;
 }
 
-/* Hero Box with Exact Flush Width Alignment for Logo and Tagline */
+/* Hero Box with Exact Center & Flush Width Alignment for Logo and Tagline */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .hero-logo-box {
-  width: min(92vw, 840px);
+  width: 100%;
+  max-width: 840px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .slide1-psd-logo {
   width: 100%;
+  max-width: 840px;
   height: auto;
   display: block;
+  margin: 0 auto 1.6rem auto;
   filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.18));
   transition: transform 0.6s ease;
-  margin-bottom: 1.6rem;
 }
 
 .slide1-psd-logo:hover {
@@ -291,11 +303,17 @@ body {
   align-items: center;
 }
 
+.about-visual {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .circle-profile-wrapper {
   position: relative;
   width: 280px;
   height: 280px;
-  margin: 0 auto;
+  margin: 0 0 1.5rem 0;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid rgba(0, 242, 254, 0.4);
@@ -883,8 +901,9 @@ body {
     padding: 0.8rem 2.2rem;
   }
   
-  /* About Section Mobile Ultra Compact Scaling */
-  .circle-profile-wrapper { width: 150px; height: 150px; margin-bottom: 0.5rem; }
+/* About Section Mobile Ultra Compact Scaling */
+  .about-visual { justify-content: flex-start; }
+  .circle-profile-wrapper { width: 150px; height: 150px; margin: 0 0 0.8rem 0; }
   .director-header-box { padding: 0.7rem 1rem; margin-bottom: 1.2rem; }
   .director-name { font-size: 1.1rem; }
   .director-title { font-size: 0.72rem; margin-left: 0; display: block; margin-top: 2px; }
@@ -912,7 +931,7 @@ body {
 
 @media (max-width: 480px) {
   .section-title { font-size: 1.25rem; }
-  .circle-profile-wrapper { width: 135px; height: 135px; }
+  .circle-profile-wrapper { width: 135px; height: 135px; margin: 0 0 0.8rem 0; }
   .slide1-psd-logo { margin-bottom: 0.8rem; }
   .slide1-tagline { font-size: 0.62rem; letter-spacing: 0.02em; line-height: 1.35; }
   .director-name { font-size: 1.05rem; }
