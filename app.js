@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Filter Button Click Handler (Smooth Apple-Style Grid Cross-Fade)
+  // Filter Button Click Handler (Organic Randomized Card Float-Up Entrance - 100% GPU Optimized)
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const newFilter = btn.getAttribute('data-filter');
@@ -134,17 +134,29 @@ document.addEventListener('DOMContentLoaded', () => {
       activeFilter = newFilter;
       isExpanded = false;
 
-      // Soft, subtle grid cross-fade (Zero blinking)
-      portfolioGrid.style.transition = 'opacity 0.14s ease, transform 0.14s ease';
-      portfolioGrid.style.opacity = '0.35';
-      portfolioGrid.style.transform = 'translateY(6px)';
+      updatePortfolioDisplay();
 
-      setTimeout(() => {
-        updatePortfolioDisplay();
-        portfolioGrid.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
-        portfolioGrid.style.opacity = '1';
-        portfolioGrid.style.transform = 'translateY(0)';
-      }, 130);
+      // Get all visible cards for the active filter
+      const visibleCards = Array.from(portfolioGrid.children).filter(c => c.style.display !== 'none');
+
+      // Set initial translucent & micro-translated state without forced reflow
+      visibleCards.forEach(card => {
+        card.style.transition = 'none';
+        card.style.opacity = '0.2';
+        card.style.transform = 'translateY(14px)';
+      });
+
+      // Organic randomized float-up via GPU requestAnimationFrame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          visibleCards.forEach(card => {
+            const randomDelay = (Math.random() * 0.15).toFixed(3);
+            card.style.transition = `opacity 0.38s ease ${randomDelay}s, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) ${randomDelay}s`;
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+        });
+      });
     });
   });
 
