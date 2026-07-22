@@ -139,19 +139,21 @@ document.addEventListener('DOMContentLoaded', () => {
       // Get all visible cards for the active filter
       const visibleCards = Array.from(portfolioGrid.children).filter(c => c.style.display !== 'none');
 
-      // Set initial translucent & deep translated state without forced reflow
+      // Set initial 35% translucent & 55px translated state (Never 0% blackness)
       visibleCards.forEach(card => {
         card.style.transition = 'none';
-        card.style.opacity = '0.05';
+        card.style.opacity = '0.35';
         card.style.transform = 'translateY(55px)';
       });
 
-      // Organic randomized float-up matching AE Speed Graph 2 (Fast Burst + Deep 55px 0.85s Ease-Out Tail)
+      // Dual-Timeline Asynchronous Transition:
+      // - Position (transform): 0.7s fast punch Graph 2 curve (55px -> 0px)
+      // - Opacity (opacity): 1.2s long slow ease (35% -> 100%, blooms after position stops)
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           visibleCards.forEach(card => {
             const randomDelay = (Math.random() * 0.22).toFixed(3);
-            card.style.transition = `opacity 0.8s cubic-bezier(0, 0.95, 0.1, 1) ${randomDelay}s, transform 0.85s cubic-bezier(0, 0.95, 0.1, 1) ${randomDelay}s`;
+            card.style.transition = `transform 0.7s cubic-bezier(0, 0.95, 0.1, 1) ${randomDelay}s, opacity 1.2s cubic-bezier(0.1, 0.8, 0.2, 1) ${randomDelay}s`;
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
           });
