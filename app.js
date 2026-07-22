@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==========================================================================
-     4. Instant Direct Email Inquiry Form Submission (Web3Forms)
+     4. Direct Instant Email Inquiry Form Submission (FormSubmit.co)
      ========================================================================== */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
@@ -218,20 +218,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const formData = new FormData(contactForm);
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch('https://formsubmit.co/ajax/kkhtpm06@naver.com', {
           method: 'POST',
-          body: formData
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(Object.fromEntries(formData))
         });
 
         const data = await response.json();
-        if (data.success) {
-          alert('감사합니다! 프로젝트 문의 메시지가 감독님 메일함(kkhtpm06@naver.com)으로 성공적으로 즉시 전달되었습니다.');
+        if (response.ok || data.success === "true") {
+          alert('감사합니다! 프로젝트 문의 메시지가 감독님 메일함(kkhtpm06@naver.com)으로 성공적으로 전달되었습니다.');
           contactForm.reset();
         } else {
-          alert('문의 메일 전송 중 오류가 발생했습니다. 직접 메일(kkhtpm06@naver.com)로 문의주시면 감사하겠습니다.');
+          // Fallback to native form submission
+          contactForm.submit();
         }
       } catch (err) {
-        alert('문의 메일 전송 중 오류가 발생했습니다. 직접 메일(kkhtpm06@naver.com)로 문의주시면 감사하겠습니다.');
+        // Fallback to native form submission
+        contactForm.submit();
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;

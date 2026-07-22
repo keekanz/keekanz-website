@@ -594,19 +594,18 @@
         </a>
       </div>
 
-      <!-- Contact Inquiry Form (Connected to Web3Forms Direct Instant Delivery to kkhtpm06@naver.com) -->
-      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="26a350eb-0c7f-4ca6-b8db-87612f00a5d4" />
-        <input type="hidden" name="subject" value="[KEEKANZ.COM] New Project Inquiry Submission" />
-        <input type="hidden" name="from_name" value="KEEKANZ Client Inquiry" />
-        <input type="hidden" name="to_email" value="kkhtpm06@naver.com" />
+      <!-- Contact Inquiry Form (Connected to FormSubmit.co Direct Instant Delivery to kkhtpm06@naver.com) -->
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/kkhtpm06@naver.com" method="POST">
+        <input type="hidden" name="_subject" value="[KEEKANZ.COM] New Project Inquiry Submission" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
         
         <div class="form-row">
-          <input type="text" name="name" placeholder="Name / Company" required />
-          <input type="email" name="email" placeholder="Email Address" required />
+          <input type="text" name="Name / Company" placeholder="Name / Company" required />
+          <input type="email" name="Email Address" placeholder="Email Address" required />
         </div>
-        <input type="text" name="project_subject" placeholder="Project Subject (Commercial, MV, Motion, 3D, AI)" required />
-        <textarea name="message" rows="5" placeholder="Tell us about your project vision, timeline, and budget..." required></textarea>
+        <input type="text" name="Project Subject" placeholder="Project Subject (Commercial, MV, Motion, 3D, AI)" required />
+        <textarea name="Project Description" rows="5" placeholder="Tell us about your project vision, timeline, and budget..." required></textarea>
         
         <button type="submit" class="btn btn-primary lg-btn">Send Project Inquiry</button>
       </form>
