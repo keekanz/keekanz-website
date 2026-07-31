@@ -88,10 +88,25 @@ document.addEventListener('DOMContentLoaded', () => {
       card.classList.remove('card-featured', 'card-wide');
     });
 
-    // Separate pinned cards (always stay at top) from unpinned cards (randomized)
+    // Separate pinned cards (always stay at top), avoid-top cards (never at top 1-3), and normal cards
     const pinnedCards = matchingCards.filter(card => card.getAttribute('data-pinned') === 'true');
-    const unpinnedCards = matchingCards.filter(card => card.getAttribute('data-pinned') !== 'true');
-    const shuffledCards = [...pinnedCards, ...shuffleArray(unpinnedCards)];
+    const avoidTopCards = matchingCards.filter(card => card.getAttribute('data-avoid-top') === 'true');
+    const normalCards = matchingCards.filter(card => card.getAttribute('data-pinned') !== 'true' && card.getAttribute('data-avoid-top') !== 'true');
+
+    const shuffledNormal = shuffleArray(normalCards);
+    const shuffledAvoid = shuffleArray(avoidTopCards);
+
+    let unpinnedList = [];
+    if (shuffledNormal.length >= 3) {
+      unpinnedList = [
+        ...shuffledNormal.slice(0, 3),
+        ...shuffleArray([...shuffledNormal.slice(3), ...shuffledAvoid])
+      ];
+    } else {
+      unpinnedList = [...shuffledNormal, ...shuffledAvoid];
+    }
+
+    const shuffledCards = [...pinnedCards, ...unpinnedList];
 
     // Append and display matching cards
     shuffledCards.forEach((card, idx) => {
