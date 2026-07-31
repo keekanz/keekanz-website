@@ -88,8 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
       card.classList.remove('card-featured', 'card-wide');
     });
 
-    // Shuffle matching cards
-    const shuffledCards = shuffleArray(matchingCards);
+    // Separate pinned cards (always stay at top) from unpinned cards (randomized)
+    const pinnedCards = matchingCards.filter(card => card.getAttribute('data-pinned') === 'true');
+    const unpinnedCards = matchingCards.filter(card => card.getAttribute('data-pinned') !== 'true');
+    const shuffledCards = [...pinnedCards, ...shuffleArray(unpinnedCards)];
 
     // Append and display matching cards
     shuffledCards.forEach((card, idx) => {
