@@ -296,58 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.innerText = originalText;
         }
       }
-  /* ==========================================================================
-     Scrub-on-Hover / Interactive Mouse Frame Scrubbing Preview
-     ========================================================================== */
-  const workCardsList = document.querySelectorAll('.work-card');
-
-  workCardsList.forEach(card => {
-    const thumb = card.querySelector('.card-thumb');
-    if (!thumb) return;
-
-    // Inject Scrub timeline & badge elements dynamically
-    if (!thumb.querySelector('.scrub-timeline')) {
-      const timeline = document.createElement('div');
-      timeline.className = 'scrub-timeline';
-      const progress = document.createElement('div');
-      progress.className = 'scrub-progress';
-      timeline.appendChild(progress);
-      thumb.appendChild(timeline);
-
-      const badge = document.createElement('div');
-      badge.className = 'scrub-badge';
-      badge.innerText = 'SCRUB 0%';
-      thumb.appendChild(badge);
-    }
-
-    const progressElem = thumb.querySelector('.scrub-progress');
-    const badgeElem = thumb.querySelector('.scrub-badge');
-    const imgElem = thumb.querySelector('img');
-
-    thumb.addEventListener('mousemove', (e) => {
-      const rect = thumb.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(100, Math.round(((e.clientX - rect.left) / rect.width) * 100)));
-
-      if (progressElem) progressElem.style.width = pct + '%';
-      if (badgeElem) badgeElem.innerText = `SCRUB ${pct}%`;
-
-      // Interactive image pan & depth shift matching cursor scrub position
-      if (imgElem) {
-        const panX = ((pct - 50) * 0.12).toFixed(2);
-        const scale = (1.01 + (pct / 1200)).toFixed(3);
-        imgElem.style.transform = `scale(${scale}) translateX(${panX}px)`;
-        imgElem.style.transition = 'transform 0.04s ease-out';
-      }
     });
-
-    thumb.addEventListener('mouseleave', () => {
-      if (progressElem) progressElem.style.width = '0%';
-      if (badgeElem) badgeElem.innerText = 'SCRUB 0%';
-      if (imgElem) {
-        imgElem.style.transform = '';
-        imgElem.style.transition = 'transform 0.4s ease';
-      }
-    });
-  });
+  }
 
 });
