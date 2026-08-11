@@ -202,24 +202,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalOverlay = document.getElementById('modalOverlay');
 
-  // Open Video Modal on Card Click
+  // Open Video Modal on Card Click (Supports both Vimeo & YouTube Shorts)
+  const modalContainer = videoModal.querySelector('.modal-container');
+
   workCards.forEach(card => {
     card.addEventListener('click', (e) => {
-      // Ignore click if clicking direct Vimeo link button
+      // Ignore click if clicking direct link button
       if (e.target.closest('.vimeo-direct-btn') || e.target.closest('.vimeo-link')) {
         return;
       }
 
-      const vimeoLinkElem = card.querySelector('.vimeo-link');
-      if (!vimeoLinkElem) return;
+      const videoLinkElem = card.querySelector('.vimeo-link');
+      if (!videoLinkElem) return;
 
-      const fullUrl = vimeoLinkElem.getAttribute('href');
+      const fullUrl = videoLinkElem.getAttribute('href');
       const cardTitleText = card.querySelector('.card-title')?.innerText || 'KEEKANZ Video';
+      const isVertical = card.getAttribute('data-aspect') === 'vertical';
 
-      // Extract Vimeo Video ID
-      const match = fullUrl.match(/vimeo\.com\/(\d+)/);
-      if (match && match[1]) {
-        const videoId = match[1];
+      // Adjust modal container size for vertical 9:16 shorts vs landscape 16:9
+      if (modalContainer) {
+        if (isVertical) {
+          modalContainer.classList.add('modal-vertical');
+        } else {
+          modalContainer.classList.remove('modal-vertical');
+        }
+      }
+
+      // 1. YouTube Shorts / Video
+      const ytMatch = fullUrl.match(/(?:youtube\.com\/shorts\/|youtu\.be\/|youtube\.com\/watch\?v=)([a-zA-Z0-9_-]+)/);
+      if (ytMatch && ytMatch[1]) {
+        const ytId = ytMatch[1];
+        vimeoPlayer.src = `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1`;
+        modalTitle.innerText = cardTitleText;
+        modalVimeoDirect.innerHTML = `<a href="${fullUrl}" target="_blank" rel="noopener">🔗 View original video on YouTube (${fullUrl})</a>`;
+        
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        return;
+      }
+
+      // 2. Vimeo Video
+      const vimeoMatch = fullUrl.match(/vimeo\.com\/(\d+)/);
+      if (vimeoMatch && vimeoMatch[1]) {
+        const videoId = vimeoMatch[1];
         vimeoPlayer.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0`;
         modalTitle.innerText = cardTitleText;
         modalVimeoDirect.innerHTML = `<a href="${fullUrl}" target="_blank" rel="noopener">🔗 View original video on Vimeo (${fullUrl})</a>`;
@@ -234,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal() {
     videoModal.classList.remove('active');
     vimeoPlayer.src = '';
+    if (modalContainer) modalContainer.classList.remove('modal-vertical');
     document.body.style.overflow = 'auto';
   }
 

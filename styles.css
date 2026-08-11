@@ -898,6 +898,15 @@ body {
   border-radius: var(--radius-sm);
 }
 
+.modal-container.modal-vertical {
+  max-width: 420px;
+  padding: 1.5rem;
+}
+
+.modal-container.modal-vertical .iframe-wrapper {
+  padding-bottom: 177.77%; /* 9:16 aspect ratio */
+}
+
 .iframe-wrapper iframe {
   position: absolute;
   top: 0;
