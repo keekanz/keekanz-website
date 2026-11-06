@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let shuffledCards = [];
     if (activeFilter === 'ai') {
-      // Fixed sequence for AI category: 1. Coway BEREX Pebble 2, 2. 오늘도 수고한 다리에게, 3. THE GRIND
+      // Fixed sequence for AI category: 1. Coway BEREX Pebble 2, 2. 오늘도 수고한 다리에게, 3. THE GRIND, 4. 일상 속, 수상한 일, 3초 안에 찾기
       shuffledCards = [...matchingCards].sort((a, b) => {
         const orderA = parseInt(a.getAttribute('data-ai-order') || '99', 10);
         const orderB = parseInt(b.getAttribute('data-ai-order') || '99', 10);
