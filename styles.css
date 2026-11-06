@@ -1,4 +1,5 @@
 :root {
+  color-scheme: dark;
   --bg-dark: #000000;
   --bg-card: rgba(18, 20, 28, 0.7);
   --bg-card-hover: rgba(28, 32, 45, 0.9);
@@ -144,6 +145,8 @@ body {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
   backface-visibility: hidden;
+  forced-color-adjust: none;
+  color-scheme: dark;
 }
 
 .navbar.scrolled .custom-psd-logo {
@@ -258,6 +261,8 @@ body {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
   backface-visibility: hidden;
+  forced-color-adjust: none;
+  color-scheme: dark;
 }
 
 .slide1-psd-logo:hover {
