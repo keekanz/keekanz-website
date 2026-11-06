@@ -1,5 +1,6 @@
 :root {
-  color-scheme: dark;
+  color-scheme: dark !important;
+  forced-color-adjust: none !important;
   --bg-dark: #000000;
   --bg-card: rgba(18, 20, 28, 0.7);
   --bg-card-hover: rgba(28, 32, 45, 0.9);
@@ -146,7 +147,8 @@ body {
   image-rendering: high-quality;
   backface-visibility: hidden;
   forced-color-adjust: none;
-  color-scheme: dark;
+  color-scheme: dark !important;
+  forced-color-adjust: none !important;
 }
 
 .navbar.scrolled .custom-psd-logo {
@@ -262,11 +264,23 @@ body {
   image-rendering: high-quality;
   backface-visibility: hidden;
   forced-color-adjust: none;
-  color-scheme: dark;
+  color-scheme: dark !important;
+  forced-color-adjust: none !important;
 }
 
 .slide1-psd-logo:hover {
   transform: scale(1.015);
+}
+
+.custom-psd-logo path,
+.custom-psd-logo rect,
+.custom-psd-logo polygon,
+.slide1-psd-logo path,
+.slide1-psd-logo rect,
+.slide1-psd-logo polygon {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  forced-color-adjust: none !important;
 }
 
 .slide1-tagline {
@@ -935,7 +949,18 @@ body {
 @media (max-width: 992px) {
   .grid-2col.page2-layout { grid-template-columns: 1fr; gap: 0.8rem; }
   .circle-profile-wrapper { width: 180px; height: 180px; margin: 0 0 0.3rem 0; }
-  .slide1-tagline { white-space: normal; text-align: center; text-align-last: center; font-size: 0.72rem; letter-spacing: 0.03em; }
+  .custom-psd-logo path,
+.custom-psd-logo rect,
+.custom-psd-logo polygon,
+.slide1-psd-logo path,
+.slide1-psd-logo rect,
+.slide1-psd-logo polygon {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  forced-color-adjust: none !important;
+}
+
+.slide1-tagline { white-space: normal; text-align: center; text-align-last: center; font-size: 0.72rem; letter-spacing: 0.03em; }
   .portfolio-grid-wrapper.collapsed { max-height: 750px; }
 }
 
@@ -1022,7 +1047,18 @@ body {
   .section-title { font-size: 1.25rem; }
   .circle-profile-wrapper { width: 135px; height: 135px; margin: 0 0 0.15rem 0; }
   .slide1-psd-logo { margin-bottom: 0.8rem; }
-  .slide1-tagline { font-size: 0.62rem; letter-spacing: 0.02em; line-height: 1.35; }
+  .custom-psd-logo path,
+.custom-psd-logo rect,
+.custom-psd-logo polygon,
+.slide1-psd-logo path,
+.slide1-psd-logo rect,
+.slide1-psd-logo polygon {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  forced-color-adjust: none !important;
+}
+
+.slide1-tagline { font-size: 0.62rem; letter-spacing: 0.02em; line-height: 1.35; }
   .director-name { font-size: 1.05rem; }
   .block-label { font-size: 0.68rem; }
   .block-text { font-size: 0.78rem; }
